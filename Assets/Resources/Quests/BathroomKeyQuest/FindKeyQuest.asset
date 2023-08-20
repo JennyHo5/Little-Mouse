@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2ee25844972b44ab3f7fdb23fcf3b1, type: 3}
+  m_Name: FindKeyQuest
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: FindKeyQuest
+  displayName: Explore the Plunger in the bathroom!
+  levelRequirement: 0
+  questPrerequisities: []
+  questStepPrefabs:
+  - {fileID: 8600910142424246018, guid: d3ad58fb8a17e53499d489dcebfef1b0, type: 3}
+  - {fileID: 2334910907901804573, guid: fa9d4b7fcc996fc4d8a3357d1b0195ea, type: 3}
+  - {fileID: 2334910907901804573, guid: 77c202ef43a4ec744a5db87753459055, type: 3}
+  questRewardItem: Bathroom key
