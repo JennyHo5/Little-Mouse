@@ -46,20 +46,23 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void QuitGame()
+    public void OnApplicationQuit()
     {
+        Debug.Log("Saved the game");
+        DataPersistenceManager.instance.SaveGame();
         Debug.Log("Quited the game");
         Application.Quit();
     }
 
-    public void SaveGameButton()
+    public void OnLoadGameClicked()
     {
-        Debug.Log("Save game button pressed");
+        DataPersistenceManager.instance.LoadGame();
+        Resume();
     }
 
-    public void LoadGameButton()
+    public void OnSaveGameClicked()
     {
-        Debug.Log("Load game button pressed");
+        DataPersistenceManager.instance.SaveGame();
     }
 
 }

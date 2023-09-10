@@ -10,9 +10,17 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void QuitGame()
+    public void OnApplicationQuit()
     {
+        Debug.Log("Saved the game.");
+        DataPersistenceManager.instance.SaveGame();
         Debug.Log("Quited the game.");
         Application.Quit();
+    }
+
+    public void OnLoadGameClicked()
+    {
+        DataPersistenceManager.instance.LoadGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class FoodCollectible : MonoBehaviour
+public class FoodCollectible : MonoBehaviour, IDataPersistence
 {
     [Header("Config")]
     [SerializeField] private int foodGained = 1;
-    [SerializeField] private int experienceGained = 20;
-
     private BoxCollider2D boxCollider;
     private SpriteRenderer visual;
+
+    private bool collected = false;
+
+    [SerializeField] private string id;
+
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     private void Awake()
     {
@@ -18,11 +26,30 @@ public class FoodCollectible : MonoBehaviour
         visual= GetComponentInChildren<SpriteRenderer>();
     }
 
+    public void LoadData(GameData data)
+    {
+        data.foodsCollected.TryGetValue(id, out collected);
+        if (collected)
+        {
+            boxCollider.enabled = false;
+            visual.gameObject.SetActive(false);
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        if (data.foodsCollected.ContainsKey(id))
+        {
+            data.foodsCollected.Remove(id);
+        }
+        data.foodsCollected.Add(id, collected);
+    }
+
     private void CollectFood()
     {
         boxCollider.enabled= false;
         visual.gameObject.SetActive(false);
-        GameEventsManager.instance.playerEvents.ExperienceGained(experienceGained);
+        collected = true;
         GameEventsManager.instance.foodEvents.FoodGained(foodGained);
         GameEventsManager.instance.miscEvents.FoodCollected();
     }

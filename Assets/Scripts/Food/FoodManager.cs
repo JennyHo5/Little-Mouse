@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodManager : MonoBehaviour
+public class FoodManager : MonoBehaviour, IDataPersistence
 {
     [Header("Configuration")]
     [SerializeField] private int startingFood = 0;
@@ -12,6 +12,16 @@ public class FoodManager : MonoBehaviour
     private void Awake()
     {
         currentFood= startingFood;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.currentFood = data.foodCount;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.foodCount = this.currentFood;
     }
 
     private void OnEnable()

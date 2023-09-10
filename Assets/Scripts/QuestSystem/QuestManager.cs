@@ -10,6 +10,9 @@ public class QuestManager : MonoBehaviour
 
     private Dictionary<string, Quest> questMap;
 
+    public static QuestManager instance { get; private set; }
+
+
     //quest start requirement
     private int currentPlayerLevel;
 
