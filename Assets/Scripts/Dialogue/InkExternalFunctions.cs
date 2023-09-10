@@ -1,7 +1,7 @@
+using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ink.Runtime;
 
 public class InkExternalFunctions
 {
@@ -14,6 +14,7 @@ public class InkExternalFunctions
         story.BindExternalFunction("updateQuest", (string questId) => UpdateQuest(questId));
         story.BindExternalFunction("finishQuest", (string questId) => FinishQuest(questId));
         story.BindExternalFunction("takeItem", (string itemName) => TakeItem(itemName));
+        story.BindExternalFunction("showItem", (string itemName) => ShowItem(itemName));
     }
 
     public void UnBind(Story story)
@@ -24,6 +25,7 @@ public class InkExternalFunctions
         story.UnbindExternalFunction("updateQuest");
         story.UnbindExternalFunction("finishQuest");
         story.UnbindExternalFunction("takeItem");
+        story.UnbindExternalFunction("showItem");
     }
 
     public void PlayItemAnim(string itemAnim, Animator itemAnimator) {
@@ -44,7 +46,20 @@ public class InkExternalFunctions
             item.SetActive(false);
         } else
         {
-            Debug.LogWarning("Game Object with name " + itemName + "not found.");
+            Debug.LogWarning("Game Object with name " + itemName + " not found.");
+        }
+    }
+
+    public void ShowItem(string itemName)
+    {
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == "Plunger")
+            {
+                obj.SetActive(true);
+                break;
+            }
         }
     }
 

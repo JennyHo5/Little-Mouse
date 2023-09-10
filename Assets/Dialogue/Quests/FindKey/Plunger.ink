@@ -5,7 +5,7 @@ EXTERNAL takeItem(itemName)
 -> main
 
 === main ===
-There is a plunger at the corner of the room, must be used for the toilet.
+There is a red plunger under the sink, must be used for the toilet.
     + [Take it]
         -> chosen("took the plunger")
         
