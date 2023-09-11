@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WhiteRatController : MonoBehaviour, IDataPersistence
+public class WhiteRatController : MonoBehaviour
 {
     public float runSpeed = 1.0f;
 
@@ -20,15 +20,15 @@ public class WhiteRatController : MonoBehaviour, IDataPersistence
         animator = GetComponent<Animator>();
     }
 
-    public void LoadData(GameData data)
-    {
-        this.transform.position = data.playerPosition;
-    }
+    //public void LoadData(GameData data)
+    //{
+    //    this.transform.position = data.playerPosition;
+    //}
 
-    public void SaveData(ref GameData data)
-    {
-        data.playerPosition = this.transform.position;
-    }
+    //public void SaveData(ref GameData data)
+    //{
+    //    data.playerPosition = this.transform.position;
+    //}
 
 
     private void FixedUpdate()
