@@ -746,6 +746,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.game
+  gameData:
+    foodCount: 0
+    foodsCollected:
+      keys: []
+      values: 
 --- !u!1 &249368214
 GameObject:
   m_ObjectHideFlags: 0
@@ -8099,7 +8104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880cc4b61e5ddc64499c29d18faf63c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadQuestState: 1
+  loadQuestState: 0
 --- !u!1 &1356312687
 GameObject:
   m_ObjectHideFlags: 0
@@ -8505,19 +8510,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c2e10c73d1cbe45b3693644a42a050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadGlobalsJSON: {fileID: 4900000, guid: fedec0e360c5aef4a84160654400679b, type: 3}
   globalsInkFile:
-    compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: 63581500a6e9e0b41875e84323b06461, type: 3}
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 0}
     unhandledCompileErrors: []
+    recursiveIncludeErrorPaths: []
     errors: []
     warnings: []
     todos: []
-    parents: []
     masterInkAssets: []
-    masterInkAsset: {fileID: 0}
-    includePaths: []
+    localIncludePaths: []
     includes: []
   dialoguePanel: {fileID: 1438467045}
   dialogueText: {fileID: 1410654002}

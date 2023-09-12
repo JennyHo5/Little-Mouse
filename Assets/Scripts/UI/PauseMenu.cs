@@ -48,7 +48,6 @@ public class PauseMenu : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        Debug.Log("Saved the game");
         DataPersistenceManager.instance.SaveGame();
         Debug.Log("Quited the game");
         Application.Quit();

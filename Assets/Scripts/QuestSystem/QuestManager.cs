@@ -6,11 +6,10 @@ public class QuestManager : MonoBehaviour
 {
 
     [Header("Config")]
-    [SerializeField] private bool loadQuestState = true;
+    [SerializeField] public bool loadQuestState = false;
 
     private Dictionary<string, Quest> questMap;
 
-    public static QuestManager instance { get; private set; }
 
 
     //quest start requirement
@@ -188,6 +187,7 @@ public class QuestManager : MonoBehaviour
             SaveQuest(quest);
         }
     }
+
 
     private void SaveQuest(Quest quest)
     {
