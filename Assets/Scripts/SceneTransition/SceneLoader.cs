@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoBehaviour, IDataPersistence
 {
     private bool playerInRange;
 
@@ -13,7 +13,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private float transitionTime = 1.0f;
 
     [Header("Next Scene Index")]
-    [SerializeField] private int sceneIndex;
+    [SerializeField] private int nextSceneIndex;
 
     private void Awake()
     {
@@ -28,9 +28,19 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        this.nextSceneIndex = data.sceneIndex + 1;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.sceneIndex = this.nextSceneIndex - 1;
+    }
+
     public void LoadNextScene()
     {
-        StartCoroutine(LoadScene(sceneIndex)); //load to the scene index in "Scenes in build"
+        StartCoroutine(LoadScene(nextSceneIndex)); //load to the scene index in "Scenes in build"
     }
 
     IEnumerator LoadScene(int sceneIndex)

@@ -7,17 +7,17 @@ public class GameData
 {
     //save foot count
     public int foodCount;
-    //save player's position
-    //public Vector3 playerPosition;
     //save which food have been collected
     public SerializableDictionary<string, bool> foodsCollected;
+    //save which scene is been saved
+    public int sceneIndex;
 
     //the value defined in this constructor will be the default values
     //the game starts with when there's no data to load
     public GameData()
     {
         this.foodCount = 0;
-        //playerPosition = new Vector3(0, 0, 0);
         foodsCollected = new SerializableDictionary<string, bool>();
+        this.sceneIndex = 1;
     }
 }
