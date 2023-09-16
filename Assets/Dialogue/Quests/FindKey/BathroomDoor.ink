@@ -2,6 +2,7 @@ INCLUDE ../../globals.ink
 EXTERNAL startQuest(questId)
 EXTERNAL finishQuest(questId)
 EXTERNAL takeItem(itemName)
+EXTERNAL takeOutInventory(itemName)
 
 { has_bathroom_key == false: -> no_key | -> with_key }
 
@@ -14,7 +15,9 @@ It's the door of the Bathroom.
 
 === with_key ===
 Let's try the key we found on this door. #speaker: Black Mouse #portrait:black_rat_normal #layout:speaker
+    ~ takeOutInventory("Key")
     + [Try the key]
+    
 ~ finishQuest("FindKeyQuest")
 ~ takeItem("Door")
 It's opened! #speaker: White Mouse #portrait:white_rat_normal #layout:speaker

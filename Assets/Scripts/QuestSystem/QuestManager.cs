@@ -239,14 +239,6 @@ public class QuestManager : MonoBehaviour, IDataPersistence
             {
                 QuestData questData = quest.GetQuestData();
 
-                Debug.Log("For quest " + quest.info.id);
-                Debug.Log("Trying to save questData.questStepIndex: " + questData.questStepIndex);
-                Debug.Log("Trying to save questData.questStepStates: ");
-                for (int i = 0; i < questData.questStepStates.Length; i++)
-                {
-                    Debug.Log(questData.questStepStates[i].state);
-                }
-
                 if (data.questMap.ContainsKey(quest.info.id))
                 {
                     data.questMap.Remove(quest.info.id);

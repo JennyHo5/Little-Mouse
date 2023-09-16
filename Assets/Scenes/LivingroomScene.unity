@@ -1603,7 +1603,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 478770633474660953, guid: d9a9b92c1dcaa2440a6552c30691e799, type: 3}
       propertyPath: loadQuestState
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 478770633474660958, guid: d9a9b92c1dcaa2440a6552c30691e799, type: 3}
       propertyPath: m_RootOrder
