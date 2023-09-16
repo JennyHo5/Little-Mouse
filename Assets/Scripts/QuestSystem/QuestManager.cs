@@ -5,13 +5,8 @@ using System;
 
 public class QuestManager : MonoBehaviour, IDataPersistence
 {
-
-    [Header("Config")]
-    [SerializeField] public bool loadQuestState = true;
-
-    private Dictionary<string, Quest> questMap;
-
-
+    private bool loadQuestState = true;
+    [SerializeField] private Dictionary<string, Quest> questMap;
 
     //quest start requirement
     private int currentPlayerLevel;

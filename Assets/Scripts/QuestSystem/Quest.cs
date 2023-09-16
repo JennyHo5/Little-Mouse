@@ -15,7 +15,6 @@ public class Quest
 
     public Quest(QuestInfoSO questInfo)
     {
-        Debug.Log("Creating Quest ...");
         this.info = questInfo;
         this.state = QuestState.REQUIREMENTS_NOT_MET;
         this.currentQuestStepIndex = 0;
@@ -61,7 +60,6 @@ public class Quest
         {
             QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform).GetComponent<QuestStep>();
             questStep.InitializeQuestStep(info.id, currentQuestStepIndex, questStepStates[currentQuestStepIndex].state);
-            Debug.Log("questStep: " + questStep);
         }
     }
 
