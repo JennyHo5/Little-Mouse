@@ -23,9 +23,9 @@ public class QuestInfoSO : ScriptableObject
     //ensure the id is always the name of the Scriptable Object name
     private void OnValidate() //this method will be called automatically by Unity whenever the script's properties are modified in the Inspector
     {
-#if UNITY_EDITOR // starts a conditional compilation block, which checks if the code is being executed within the Unity Editor
+    #if UNITY_EDITOR // starts a conditional compilation block, which checks if the code is being executed within the Unity Editor
         id = this.name;
         UnityEditor.EditorUtility.SetDirty( this ); //its serialized data has been modified and needs to be saved
-#endif
+    #endif
     }
 }

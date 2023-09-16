@@ -15,13 +15,14 @@ public class Quest
 
     public Quest(QuestInfoSO questInfo)
     {
+        Debug.Log("Creating Quest ...");
         this.info = questInfo;
         this.state = QuestState.REQUIREMENTS_NOT_MET;
         this.currentQuestStepIndex = 0;
         this.questStepStates = new QuestStepState[info.questStepPrefabs.Length];
         for (int i = 0; i < questStepStates.Length; i++)
         {
-            questStepStates[i] = new QuestStepState();
+            questStepStates[i] = new QuestStepState(); //empty
         }
     }
 

@@ -11,6 +11,8 @@ public class GameData
     public SerializableDictionary<string, bool> foodsCollected;
     //save which scene is been saved
     public int sceneIndex;
+    //save quests
+    public SerializableDictionary<string, QuestData> questMap;
 
     //the value defined in this constructor will be the default values
     //the game starts with when there's no data to load
@@ -19,5 +21,6 @@ public class GameData
         this.foodCount = 0;
         this.foodsCollected = new SerializableDictionary<string, bool>();
         this.sceneIndex = 0;
+        this.questMap = new SerializableDictionary<string, QuestData>();
     }
 }

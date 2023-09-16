@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : MonoBehaviour, IDataPersistence
 {
 
     [Header("Config")]
@@ -17,7 +18,7 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
-        questMap = CreateQuestMap();
+        questMap = InitializeQuestMap();
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -47,7 +48,7 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         //boardcast the initial state of all quests on startup
-        foreach(Quest quest in questMap.Values)
+        foreach (Quest quest in questMap.Values)
         {
             //initalize any loaded quest steps
             if (quest.state == QuestState.IN_PROGRESS)
@@ -77,7 +78,7 @@ public class QuestManager : MonoBehaviour
         }
 
         //check quest prerequisites for completion
-        foreach(QuestInfoSO prerequisiteQuestInfo in quest.info.questPrerequisities)
+        foreach (QuestInfoSO prerequisiteQuestInfo in quest.info.questPrerequisities)
         {
             if (GetQuestById(prerequisiteQuestInfo.id).state != QuestState.FINISHED)
             {
@@ -91,7 +92,7 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
         //loop through all quests
-        foreach(Quest quest in questMap.Values)
+        foreach (Quest quest in questMap.Values)
         {
             //if we're now meeting the requirements, switch over to the CAN_START state
             if (quest.state == QuestState.REQUIREMENTS_NOT_MET && CheckRequirementMet(quest))
@@ -152,71 +153,68 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestById(id);
         quest.StoreQuestStepState(questStepState, stepIndex);
         ChangeQuestState(id, quest.state);
-    }
-
-    private Dictionary<string, Quest> CreateQuestMap()
-    {
-        //loads all QuestInfoSO Scriptable Objects under the Assets/Resources/Quests folder
-        QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
-        //create the quest map
-        Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
-        foreach(QuestInfoSO questinfo in allQuests)
-        {
-            if (idToQuestMap.ContainsKey(questinfo.id))
-            {
-                Debug.LogWarning("Duplicate ID found when creating quest map:" + questinfo.id);
-            }
-            idToQuestMap.Add(questinfo.id, LoadQuest(questinfo));
-        }
-        return idToQuestMap;
+        Debug.Log("Quest " + id + " changed to state " + quest.state);
     }
 
     private Quest GetQuestById(string id)
     {
         Quest quest = questMap[id];
-        if (quest== null)
+        if (quest == null)
         {
             Debug.LogError("ID not found in the Quest Map: " + id);
         }
         return quest;
     }
 
-    private void OnApplicationQuit()
+    private Dictionary<string, Quest> InitializeQuestMap()
     {
-        foreach (Quest quest in questMap.Values)
+        Debug.Log("Initalizing the questMap...");
+        //loads all QuestInfoSO Scriptable Objects under the Assets/Resources/Quests folder
+        QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
+        //create the quest map
+        Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
+        foreach (QuestInfoSO questinfo in allQuests)
         {
-            SaveQuest(quest);
+            Debug.Log("For quest: " + questinfo.id);
+            if (idToQuestMap.ContainsKey(questinfo.id))
+            {
+                Debug.LogWarning("Duplicate ID found when creating quest map:" + questinfo.id);
+            }
+            Quest quest = new Quest(questinfo); //initialized a new quest
+            idToQuestMap.Add(questinfo.id, quest);
         }
+        return idToQuestMap;
     }
 
 
-    private void SaveQuest(Quest quest)
+    private Dictionary<string, Quest> CreateQuestMap(Dictionary<string, QuestData> questMap2)
     {
-        try
+        //loads all QuestInfoSO Scriptable Objects under the Assets/Resources/Quests folder
+        QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
+        //create the quest map
+        Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
+        foreach (QuestInfoSO questinfo in allQuests)
         {
-            QuestData questData = quest.GetQuestData();
-            //serialize using JsonUtility, but use whatever it works (like JSON.NET)
-            string serializedData = JsonUtility.ToJson(questData);
-            //saving to playerPrefs is just a quick example for the tutorial, instead use an actual save & load system and write to a file, the cloud, etc...
-            PlayerPrefs.SetString(quest.info.id, serializedData);
+            if (idToQuestMap.ContainsKey(questinfo.id))
+            {
+                Debug.LogWarning("Duplicate ID found when creating quest map:" + questinfo.id);
+            }
+            idToQuestMap.Add(questinfo.id, LoadQuest(questinfo, questMap2));
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError("Failed to save quest with id " + quest.info.id + ": " + e);
-        }
+        return idToQuestMap;
     }
 
-    private Quest LoadQuest(QuestInfoSO questInfo)
+
+    private Quest LoadQuest(QuestInfoSO questInfo, Dictionary<string, QuestData> questData1)
     {
         Quest quest = null;
         try
         {
             //load quest from saved data
-            if (PlayerPrefs.HasKey(questInfo.id) && loadQuestState)
+            if (questData1.ContainsKey(questInfo.id) && loadQuestState)
             {
-                string serializedData = PlayerPrefs.GetString(questInfo.id);
-                QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);
-                quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
+                QuestData questEntry = questData1[questInfo.id];
+                quest = new Quest(questInfo, questEntry.state, questEntry.questStepIndex, questEntry.questStepStates);
             }
             //otherwise initialized a new quest
             else
@@ -224,10 +222,62 @@ public class QuestManager : MonoBehaviour
                 quest = new Quest(questInfo);
             }
         }
-        catch(System.Exception e)
+        catch (System.Exception e)
         {
             Debug.LogError("Failed to load quest with id " + quest.info.id + ": " + e);
         }
         return quest;
+    }
+
+
+    public void SaveData(ref GameData data)
+    {
+
+        foreach (Quest quest in questMap.Values)
+        {
+            try
+            {
+                QuestData questData = quest.GetQuestData();
+
+                Debug.Log("For quest " + quest.info.id);
+                Debug.Log("Trying to save questData.questStepIndex: " + questData.questStepIndex);
+                Debug.Log("Trying to save questData.questStepStates: ");
+                for (int i = 0; i < questData.questStepStates.Length; i++)
+                {
+                    Debug.Log(questData.questStepStates[i].state);
+                }
+
+                if (data.questMap.ContainsKey(quest.info.id))
+                {
+                    data.questMap.Remove(quest.info.id);
+                }
+                data.questMap.Add(quest.info.id, questData);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Failed to save quest with id " + quest.info.id + ": " + e);
+            }
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        Debug.Log("Loading quest map from data.game ...");
+        questMap = CreateQuestMap(data.questMap);
+    }
+
+    private void OnApplicationQuit()
+    {
+        foreach (Quest quest in questMap.Values)
+        {
+            QuestData questData = quest.GetQuestData();
+            Debug.Log(quest.info.id);
+            Debug.Log("state = " + questData.state);
+            Debug.Log("index = " + questData.questStepIndex);
+            foreach (QuestStepState stepState in questData.questStepStates)
+            {
+                Debug.Log("step state = " + stepState.state);
+            }
+        }
     }
 }
