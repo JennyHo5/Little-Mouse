@@ -6,7 +6,7 @@ public class QuestManager : MonoBehaviour
 {
 
     [Header("Config")]
-    [SerializeField] public bool loadQuestState = false;
+    [SerializeField] public bool loadQuestState = true;
 
     private Dictionary<string, Quest> questMap;
 
@@ -18,7 +18,8 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
         questMap = CreateQuestMap();
-    } 
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void OnEnable()
     {

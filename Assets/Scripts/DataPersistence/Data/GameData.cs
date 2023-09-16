@@ -17,7 +17,7 @@ public class GameData
     public GameData()
     {
         this.foodCount = 0;
-        foodsCollected = new SerializableDictionary<string, bool>();
-        this.sceneIndex = 1;
+        this.foodsCollected = new SerializableDictionary<string, bool>();
+        this.sceneIndex = 0;
     }
 }

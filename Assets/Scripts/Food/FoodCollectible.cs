@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class FoodCollectible : MonoBehaviour, IDataPersistence
 {
-    [Header("Config")]
-    [SerializeField] private int foodGained = 1;
     private BoxCollider2D boxCollider;
     private SpriteRenderer visual;
 
@@ -50,8 +48,7 @@ public class FoodCollectible : MonoBehaviour, IDataPersistence
         boxCollider.enabled= false;
         visual.gameObject.SetActive(false);
         collected = true;
-        GameEventsManager.instance.foodEvents.FoodGained(foodGained);
-        GameEventsManager.instance.miscEvents.FoodCollected();
+        GameEventsManager.instance.foodEvents.FoodCollected();
     }
 
     void OnTriggerEnter2D(Collider2D other)

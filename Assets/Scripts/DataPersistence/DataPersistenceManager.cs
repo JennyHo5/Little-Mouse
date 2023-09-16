@@ -53,7 +53,6 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
-
     public void NewGame()
     {
         this.gameData = new GameData();

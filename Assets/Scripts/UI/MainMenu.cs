@@ -18,10 +18,11 @@ public class MainMenu : MonoBehaviour
             loadGameButton.interactable = false;
         }
     }
-    public void PlayGame()
+
+    public void OnNewGameClicked()
     {
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadScene("BathroomScene");
+        SceneManager.LoadSceneAsync("BathroomScene");
     }
 
 
@@ -29,7 +30,7 @@ public class MainMenu : MonoBehaviour
     {
         DataPersistenceManager.instance.LoadGame();
         //load the scene, which will in turn save the game because of OnSceneUnloaded() in theDataPersistenceManager
-        SceneManager.LoadScene(DataPersistenceManager.instance.gameData.sceneIndex);
+        SceneManager.LoadSceneAsync(DataPersistenceManager.instance.gameData.sceneIndex);
     }
 
     public void OnApplicationQuit()

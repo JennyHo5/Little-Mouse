@@ -30,7 +30,7 @@ public class SceneLoader : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.nextSceneIndex = data.sceneIndex + 1;
+        //Don't need to load
     }
 
     public void SaveData(ref GameData data)
