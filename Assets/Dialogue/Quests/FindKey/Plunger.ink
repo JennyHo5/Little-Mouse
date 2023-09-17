@@ -11,7 +11,7 @@ There is a red plunger under the sink, must be used for the toilet.
         -> chosen("took the plunger")
         
 === chosen(action) ===
-~ putInInventory("Plunger")
+~ putInInventory("PlungerInventory")
 ~ takeItem("Plunger")
 ~ updateQuest("FindKeyQuest")
 ~ has_plunger = true

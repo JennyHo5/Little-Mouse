@@ -22,7 +22,7 @@ There are also some other stuff: a yellow soap, and a mouthwash cup with two too
 
 ===with_plunger===
 There are some cleaning tools in the wardorbe.
-~showItem("Plunger")
+~ showItem("Plunger")
 You found a red plunger.
 ->DONE
 

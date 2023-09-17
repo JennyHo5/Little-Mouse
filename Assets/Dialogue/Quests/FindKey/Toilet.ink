@@ -32,9 +32,9 @@ EXTERNAL takeOutInventory(itemName)
     === no_bathroom_key ===
     Let's try to use the plunger! #speaker: Black Mouse #portrait:black_rat_normal #layout:speaker
         + [Use the plunger]
-    ~ takeOutInventory("Plunger")
+    ~ takeOutInventory("PlungerInventory")
     You used the plunger to pull it out.
-    ~putInInventory("Key")
+    ~putInInventory("KeyInventory")
     It is a key! Maybe we can use it on a door? #speaker: White Mouse #portrait:white_rat_normal #layout:speaker
     ~ has_bathroom_key = true
     -> DONE

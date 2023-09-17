@@ -89,12 +89,13 @@ public class InkExternalFunctions
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
         foreach (GameObject obj in allObjects)
         {
-            if (obj.name == "Plunger")
+            if (obj.name == itemName)
             {
                 obj.SetActive(true);
                 break;
             }
         }
+        Debug.Log("Cannot find object named " + itemName);
     }
 
 

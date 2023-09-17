@@ -558,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 395652453}
   m_Layer: 5
-  m_Name: Plunger
+  m_Name: PlungerInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,8 +582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21.4, y: 0}
-  m_SizeDelta: {x: 65, y: 65}
+  m_AnchoredPosition: {x: 30, y: 38}
+  m_SizeDelta: {x: 142.6641, y: 142.6641}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &404438468
 GameObject:
@@ -5203,7 +5203,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 615292363}
-  - component: {fileID: 615292364}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -5226,20 +5225,6 @@ Transform:
   m_Father: {fileID: 156191959}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &615292364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615292362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a85984c28c2e93a41b627fda2a5d29f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  itemSprite: {fileID: 21300000, guid: 333c77523feaa0c4fbd6b067ba9a7a08, type: 3}
 --- !u!1 &618174660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5274,8 +5259,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66, y: 0}
-  m_SizeDelta: {x: 65, y: 65}
+  m_AnchoredPosition: {x: 11.704, y: 14.691}
+  m_SizeDelta: {x: 151.1118, y: 151.1118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &641081423
 GameObject:
@@ -6400,7 +6385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4663026149094713336, guid: 6943c4783cbf0b2468e7f6466ffeaec1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4663026149094713337, guid: 6943c4783cbf0b2468e7f6466ffeaec1, type: 3}
       propertyPath: m_RootOrder
@@ -6477,25 +6462,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4663026149094713337, guid: 6943c4783cbf0b2468e7f6466ffeaec1, type: 3}
   m_PrefabInstance: {fileID: 1300587208}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1300587211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4663026149094713336, guid: 6943c4783cbf0b2468e7f6466ffeaec1, type: 3}
-  m_PrefabInstance: {fileID: 1300587208}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1300587212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300587211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a85984c28c2e93a41b627fda2a5d29f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  itemSprite: {fileID: 21300000, guid: 4f0e8f1bda5203445a5f4c57d393fdd5, type: 3}
 --- !u!4 &1303248631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4428181691090674564, guid: e03c49abd18d78246b99fbbfef6906f0, type: 3}
@@ -6961,8 +6927,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -129, y: -42}
-  m_SizeDelta: {x: 240, y: 68}
+  m_AnchoredPosition: {x: -62.03598, y: -51.79959}
+  m_SizeDelta: {x: 106.072, y: 87.5992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1771976310
 MonoBehaviour:
@@ -7986,6 +7952,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1518910874}
+    - target: {fileID: 3498630517565370349, guid: 8b7ace9ca50a58d45a940c77a012a574, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b7ace9ca50a58d45a940c77a012a574, type: 3}
 --- !u!224 &3498630518130924849 stripped

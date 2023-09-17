@@ -15,9 +15,10 @@ It's the door of the Bathroom.
 
 === with_key ===
 Let's try the key we found on this door. #speaker: Black Mouse #portrait:black_rat_normal #layout:speaker
-    ~ takeOutInventory("Key")
-    + [Try the key]
     
+    + [Try the key]
+
+~ takeOutInventory("KeyInventory")
 ~ finishQuest("FindKeyQuest")
 ~ takeItem("Door")
 It's opened! #speaker: White Mouse #portrait:white_rat_normal #layout:speaker
