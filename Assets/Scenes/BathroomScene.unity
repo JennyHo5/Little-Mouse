@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 4742726}
   - component: {fileID: 4742727}
   m_Layer: 0
-  m_Name: Halloween_Singles_32x32_28
+  m_Name: SpiderNet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7320,7 +7320,7 @@ GameObject:
   - component: {fileID: 1922252485}
   - component: {fileID: 1922252486}
   m_Layer: 0
-  m_Name: Kitchen_Singles_32x32_139
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
