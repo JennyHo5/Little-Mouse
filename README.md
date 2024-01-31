@@ -1,6 +1,5 @@
 # Demo
 WebGL: https://jennyho5.itch.io/mouse-in-the-house
-Password: Jiayu Hu
 
 # Credits
 
