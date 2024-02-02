@@ -15,6 +15,7 @@ public class InkExternalFunctions
         story.BindExternalFunction("finishQuest", (string questId) => FinishQuest(questId));
         story.BindExternalFunction("takeItem", (string itemName) => TakeItem(itemName));
         story.BindExternalFunction("showItem", (string itemName) => ShowItem(itemName));
+        story.BindExternalFunction("endNarrative", () => EndNarrative());
     }
 
     public void UnBind(Story story)
@@ -79,6 +80,15 @@ public class InkExternalFunctions
     {
         Debug.Log("Finish quest " + questId);
         GameEventsManager.instance.questEvents.FinishQuest(questId);
+    }
+
+    public void EndNarrative() {
+        GameObject narrativeObject = GameObject.Find("Narrative");
+        if (narrativeObject != null)
+                {
+                    // Disable the GameObject
+                    narrativeObject.SetActive(false);
+                }
     }
 
 }
