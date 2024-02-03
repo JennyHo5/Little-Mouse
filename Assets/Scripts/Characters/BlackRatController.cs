@@ -12,7 +12,7 @@ public class BlackRatController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(0, 0);
 
-
+    private bool facingRight;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +46,24 @@ public class BlackRatController : MonoBehaviour
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
+
+                        // Flip the sprite based on the movement direction
+            if (move.x < 0)
+            {
+                facingRight = true;
+            }
+            else if (move.x > 0)
+            {
+                facingRight = false;
+            }
+
+            // Change the facing direction
+            if (facingRight) {
+                transform.localScale = new Vector2(-1, 1);
+            }
+            else {
+                transform.localScale = new Vector2(1, 1);
+            }
         }
 
         animator.SetFloat("Move X", lookDirection.x);
