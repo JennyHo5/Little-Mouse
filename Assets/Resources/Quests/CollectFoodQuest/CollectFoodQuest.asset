@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CollectFoodQuest
   m_EditorClassIdentifier: 
   <id>k__BackingField: CollectFoodQuest
-  displayName: Collect the food!
+  displayName: Collect some food
   levelRequirement: 0
   questPrerequisities: []
   questStepPrefabs:

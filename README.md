@@ -20,6 +20,6 @@ https://opengameart.org/users/matthew-pablo
 
 # TODO
 - [x] Mouse should face the right way when they stop moving
-- [ ] Mouse should stop animation when dialogue is playing
+- [x] Mouse should stop animation when dialogue is playing
 - [ ] Add more dialogs
 
