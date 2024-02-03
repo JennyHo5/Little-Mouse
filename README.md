@@ -19,7 +19,7 @@ Caketown and Sownland Town by Matthew Pablo
 https://opengameart.org/users/matthew-pablo
 
 # TODO
-- [ ] Mouse should face the right way when they stop moving
+- [x] Mouse should face the right way when they stop moving
 - [ ] Mouse should stop animation when dialogue is playing
 - [ ] Add more dialogs
 
